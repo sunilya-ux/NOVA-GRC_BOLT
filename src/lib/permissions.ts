@@ -6,6 +6,204 @@ interface RoutePermissions {
   allowedRoles: RoleName[]
 }
 
+export interface FeaturePermission {
+  canUploadDocuments: boolean
+  canViewOwnDocuments: boolean
+  canViewTeamDocuments: boolean
+  canViewAllDocuments: boolean
+  canProcessDocuments: boolean
+  canApproveDocuments: boolean
+  canRejectDocuments: boolean
+  canReassignDocuments: boolean
+  canProvideReviewFeedback: boolean
+  canOverrideAI: boolean
+  canBulkProcess: boolean
+  canViewAnalytics: boolean
+  canExportReports: boolean
+  canSearchDocuments: boolean
+  canViewOwnAuditLogs: boolean
+  canViewTeamAuditLogs: boolean
+  canViewAllAuditLogs: boolean
+}
+
+const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
+  compliance_officer: {
+    canUploadDocuments: true,
+    canViewOwnDocuments: true,
+    canViewTeamDocuments: false,
+    canViewAllDocuments: false,
+    canProcessDocuments: true,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: true,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: false,
+    canExportReports: false,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: true,
+    canViewTeamAuditLogs: false,
+    canViewAllAuditLogs: false,
+  },
+  compliance_manager: {
+    canUploadDocuments: true,
+    canViewOwnDocuments: true,
+    canViewTeamDocuments: true,
+    canViewAllDocuments: false,
+    canProcessDocuments: true,
+    canApproveDocuments: true,
+    canRejectDocuments: true,
+    canReassignDocuments: true,
+    canProvideReviewFeedback: true,
+    canOverrideAI: true,
+    canBulkProcess: true,
+    canViewAnalytics: true,
+    canExportReports: true,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: true,
+    canViewTeamAuditLogs: true,
+    canViewAllAuditLogs: false,
+  },
+  cco: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: true,
+    canViewTeamDocuments: true,
+    canViewAllDocuments: true,
+    canProcessDocuments: true,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: true,
+    canOverrideAI: true,
+    canBulkProcess: true,
+    canViewAnalytics: true,
+    canExportReports: true,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: true,
+    canViewTeamAuditLogs: true,
+    canViewAllAuditLogs: true,
+  },
+  ciso: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: false,
+    canViewTeamDocuments: false,
+    canViewAllDocuments: true,
+    canProcessDocuments: false,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: false,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: true,
+    canExportReports: true,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: true,
+    canViewTeamAuditLogs: true,
+    canViewAllAuditLogs: true,
+  },
+  system_admin: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: false,
+    canViewTeamDocuments: false,
+    canViewAllDocuments: false,
+    canProcessDocuments: false,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: false,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: false,
+    canExportReports: false,
+    canSearchDocuments: false,
+    canViewOwnAuditLogs: false,
+    canViewTeamAuditLogs: false,
+    canViewAllAuditLogs: false,
+  },
+  ml_engineer: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: false,
+    canViewTeamDocuments: false,
+    canViewAllDocuments: false,
+    canProcessDocuments: false,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: false,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: false,
+    canExportReports: false,
+    canSearchDocuments: false,
+    canViewOwnAuditLogs: false,
+    canViewTeamAuditLogs: false,
+    canViewAllAuditLogs: false,
+  },
+  internal_auditor: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: true,
+    canViewTeamDocuments: true,
+    canViewAllDocuments: true,
+    canProcessDocuments: false,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: false,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: true,
+    canExportReports: true,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: true,
+    canViewTeamAuditLogs: true,
+    canViewAllAuditLogs: true,
+  },
+  dpo: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: false,
+    canViewTeamDocuments: false,
+    canViewAllDocuments: true,
+    canProcessDocuments: false,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: false,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: true,
+    canExportReports: true,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: true,
+    canViewTeamAuditLogs: false,
+    canViewAllAuditLogs: true,
+  },
+  external_auditor: {
+    canUploadDocuments: false,
+    canViewOwnDocuments: false,
+    canViewTeamDocuments: false,
+    canViewAllDocuments: true,
+    canProcessDocuments: false,
+    canApproveDocuments: false,
+    canRejectDocuments: false,
+    canReassignDocuments: false,
+    canProvideReviewFeedback: false,
+    canOverrideAI: false,
+    canBulkProcess: false,
+    canViewAnalytics: true,
+    canExportReports: true,
+    canSearchDocuments: true,
+    canViewOwnAuditLogs: false,
+    canViewTeamAuditLogs: false,
+    canViewAllAuditLogs: true,
+  },
+}
+
+export function getUserPermissions(role: RoleName): FeaturePermission {
+  return roleFeaturePermissions[role]
+}
+
 export const routePermissions: RoutePermissions[] = [
   {
     path: '/dashboard',

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuthStore } from '@/stores/authStore'
+import { getUserPermissions } from '@/lib/permissions'
 import { documentService } from '@/services/document.service'
 import { supabase } from '@/lib/supabase'
 
@@ -28,6 +29,7 @@ export function DocumentReview() {
   const [reviewAction, setReviewAction] = useState<'AGREE' | 'DISAGREE'>('AGREE')
   const [comment, setComment] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const permissions = user ? getUserPermissions(user.role_name) : null
 
   useEffect(() => {
     loadDocuments()
@@ -239,54 +241,64 @@ export function DocumentReview() {
                   )}
                 </div>
 
-                <div className="border-t border-gray-200 pt-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Decision
-                  </label>
-                  <div className="space-y-2 mb-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        checked={reviewAction === 'AGREE'}
-                        onChange={() => setReviewAction('AGREE')}
-                        className="mr-2"
-                      />
-                      <span className="text-sm text-gray-900">Agree with AI</span>
+                {permissions?.canProvideReviewFeedback ? (
+                  <div className="border-t border-gray-200 pt-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Your Decision
                     </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        checked={reviewAction === 'DISAGREE'}
-                        onChange={() => setReviewAction('DISAGREE')}
-                        className="mr-2"
-                      />
-                      <span className="text-sm text-gray-900">Disagree with AI</span>
+                    <div className="space-y-2 mb-4">
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          checked={reviewAction === 'AGREE'}
+                          onChange={() => setReviewAction('AGREE')}
+                          className="mr-2"
+                        />
+                        <span className="text-sm text-gray-900">Agree with AI</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          checked={reviewAction === 'DISAGREE'}
+                          onChange={() => setReviewAction('DISAGREE')}
+                          className="mr-2"
+                        />
+                        <span className="text-sm text-gray-900">Disagree with AI</span>
+                      </label>
+                    </div>
+
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Comment
                     </label>
+                    <textarea
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      rows={3}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Add your review comments..."
+                    />
+
+                    <button
+                      onClick={handleReview}
+                      disabled={submitting || !comment.trim()}
+                      className={`w-full mt-4 px-4 py-2 rounded-md text-sm font-medium text-white ${
+                        submitting || !comment.trim()
+                          ? 'bg-gray-400 cursor-not-allowed'
+                          : 'bg-blue-600 hover:bg-blue-700'
+                      }`}
+                    >
+                      {submitting ? 'Submitting...' : 'Submit Review'}
+                    </button>
                   </div>
-
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Comment
-                  </label>
-                  <textarea
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Add your review comments..."
-                  />
-
-                  <button
-                    onClick={handleReview}
-                    disabled={submitting || !comment.trim()}
-                    className={`w-full mt-4 px-4 py-2 rounded-md text-sm font-medium text-white ${
-                      submitting || !comment.trim()
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-blue-600 hover:bg-blue-700'
-                    }`}
-                  >
-                    {submitting ? 'Submitting...' : 'Submit Review'}
-                  </button>
-                </div>
+                ) : (
+                  <div className="border-t border-gray-200 pt-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <p className="text-sm text-blue-800">
+                        <strong>View-only access:</strong> Your role allows you to view document reviews but not provide feedback.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="bg-white shadow rounded-lg p-6 text-center">
