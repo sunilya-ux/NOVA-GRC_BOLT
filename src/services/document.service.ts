@@ -39,7 +39,16 @@ class DocumentService {
         details: { document_type: document.document_type }
       })
 
-      const ocrText = document.ocr_text || await openaiService.generateOCRText(document.document_type)
+      let ocrText = document.ocr_text
+
+      if (!ocrText) {
+        const documentUrl = await this.getDocumentUrl(document.file_path)
+        if (documentUrl) {
+          ocrText = await openaiService.extractTextFromImage(documentUrl)
+        } else {
+          ocrText = await openaiService.generateOCRText(document.document_type)
+        }
+      }
 
       const classification = await openaiService.classifyDocument(
         ocrText,
@@ -283,20 +292,27 @@ class DocumentService {
   }
 
   async uploadDocument(params: {
-    file_name: string
-    file_size: number
-    mime_type: string
-    base64_content: string
+    file: File
     document_type: string
     priority: string
     user: User
   }) {
     try {
-      const { file_name, file_size, mime_type, base64_content, document_type, priority, user } = params
+      const { file, document_type, priority, user } = params
 
-      const filePath = `data:${mime_type};base64,${base64_content}`
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${user.user_id}/${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`
 
-      const { data: document, error } = await supabase
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('documents')
+        .upload(fileName, file, {
+          contentType: file.type,
+          upsert: false
+        })
+
+      if (uploadError) throw uploadError
+
+      const { data: document, error: dbError } = await supabase
         .from('documents')
         .insert({
           document_type,
@@ -304,16 +320,19 @@ class DocumentService {
           status: 'uploaded',
           uploaded_by: user.user_id,
           assigned_to: user.user_id,
-          file_name,
-          file_path: filePath,
-          file_size,
-          mime_type,
+          file_name: file.name,
+          file_path: uploadData.path,
+          file_size: file.size,
+          mime_type: file.type,
           ocr_confidence: 0
         })
         .select()
         .single()
 
-      if (error) throw error
+      if (dbError) {
+        await supabase.storage.from('documents').remove([fileName])
+        throw dbError
+      }
 
       await auditLogger.log({
         user_id: user.user_id,
@@ -325,15 +344,52 @@ class DocumentService {
         success: true,
         details: {
           document_type,
-          file_name,
-          file_size
+          file_name: file.name,
+          file_size: file.size
         }
       })
 
-      return { success: true, documentId: document.document_id }
+      return { success: true, documentId: document.document_id, document }
     } catch (error) {
+      await auditLogger.log({
+        user_id: params.user.user_id,
+        role_name: params.user.role_name,
+        action: 'document_upload_failed',
+        module_name: 'document_upload',
+        resource_type: 'document',
+        success: false,
+        details: { error: String(error) }
+      })
       return { success: false, error: String(error) }
     }
+  }
+
+  async getDocumentUrl(filePath: string): Promise<string | null> {
+    const { data } = await supabase.storage
+      .from('documents')
+      .createSignedUrl(filePath, 3600)
+    return data?.signedUrl || null
+  }
+
+  async getDocuments() {
+    const { data, error } = await supabase
+      .from('documents')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return data
+  }
+
+  async getDocumentById(documentId: string) {
+    const { data, error } = await supabase
+      .from('documents')
+      .select('*, decisions(*)')
+      .eq('document_id', documentId)
+      .maybeSingle()
+
+    if (error) throw error
+    return data
   }
 }
 

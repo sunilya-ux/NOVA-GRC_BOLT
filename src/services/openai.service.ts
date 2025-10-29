@@ -113,6 +113,49 @@ Respond in JSON format:
     }
   }
 
+  async extractTextFromImage(imageUrl: string): Promise<string> {
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'user',
+              content: [
+                {
+                  type: 'text',
+                  text: 'Extract all text from this document image. Return only the extracted text, preserving the layout and structure as much as possible.'
+                },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: imageUrl
+                  }
+                }
+              ]
+            }
+          ],
+          max_tokens: 1000
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`OpenAI Vision API error: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+      return data.choices[0].message.content || ''
+    } catch (error) {
+      console.error('Error extracting text from image:', error)
+      throw error
+    }
+  }
+
   async generateOCRText(documentType: string): Promise<string> {
     const sampleTexts: Record<string, string> = {
       'PAN': 'INCOME TAX DEPARTMENT\nPermanent Account Number Card\nName: RAJESH KUMAR SHARMA\nFather Name: MOHAN LAL SHARMA\nDate of Birth: 15/08/1985\nPAN: ABCDE1234F',

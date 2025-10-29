@@ -48,31 +48,21 @@ export function DocumentUpload() {
       setUploading(true)
       setError(null)
 
-      const reader = new FileReader()
-      reader.onload = async (e) => {
-        try {
-          const base64Data = e.target?.result as string
+      const result = await documentService.uploadDocument({
+        file: selectedFile,
+        document_type: documentType,
+        priority: priority,
+        user
+      })
 
-          await documentService.uploadDocument({
-            file_name: selectedFile.name,
-            file_size: selectedFile.size,
-            mime_type: selectedFile.type,
-            base64_content: base64Data.split(',')[1],
-            document_type: documentType,
-            priority: priority,
-            user
-          })
-
-          navigate('/processing')
-        } catch (err) {
-          setError(String(err))
-        } finally {
-          setUploading(false)
-        }
+      if (result.success) {
+        navigate('/processing')
+      } else {
+        setError(result.error || 'Upload failed')
       }
-      reader.readAsDataURL(selectedFile)
     } catch (err) {
       setError(String(err))
+    } finally {
       setUploading(false)
     }
   }
