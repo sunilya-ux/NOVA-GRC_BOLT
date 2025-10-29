@@ -39,7 +39,7 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canProvideReviewFeedback: true,
     canOverrideAI: false,
     canBulkProcess: false,
-    canViewAnalytics: false,
+    canViewAnalytics: true,
     canExportReports: false,
     canSearchDocuments: true,
     canViewOwnAuditLogs: true,
@@ -89,7 +89,7 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewOwnDocuments: false,
     canViewTeamDocuments: false,
     canViewAllDocuments: true,
-    canProcessDocuments: false,
+    canProcessDocuments: true,
     canApproveDocuments: false,
     canRejectDocuments: false,
     canReassignDocuments: false,
@@ -146,7 +146,7 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewOwnDocuments: true,
     canViewTeamDocuments: true,
     canViewAllDocuments: true,
-    canProcessDocuments: false,
+    canProcessDocuments: true,
     canApproveDocuments: false,
     canRejectDocuments: false,
     canReassignDocuments: false,
@@ -184,7 +184,7 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewOwnDocuments: false,
     canViewTeamDocuments: false,
     canViewAllDocuments: true,
-    canProcessDocuments: false,
+    canProcessDocuments: true,
     canApproveDocuments: false,
     canRejectDocuments: false,
     canReassignDocuments: false,
@@ -228,12 +228,12 @@ export const routePermissions: RoutePermissions[] = [
   {
     path: '/processing',
     label: 'Processing',
-    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco', 'internal_auditor']
+    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco', 'ciso', 'external_auditor']
   },
   {
     path: '/review',
     label: 'Review',
-    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco', 'internal_auditor']
+    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco']
   },
   {
     path: '/search',
@@ -251,7 +251,7 @@ export const routePermissions: RoutePermissions[] = [
   {
     path: '/analytics',
     label: 'Analytics',
-    allowedRoles: ['compliance_manager', 'cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']
+    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']
   },
   {
     path: '/bulk',
