@@ -174,14 +174,14 @@ export function DocumentProcessing() {
                   <div className="mt-3 pt-3 border-t border-green-200">
                     <p className="text-gray-700 font-medium mb-2">Extracted Entities:</p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      {Object.entries(result.classification.extracted_entities).map(([key, value]) => (
-                        value && (
+                      {Object.entries(result.classification.extracted_entities)
+                        .filter(([_, value]) => value)
+                        .map(([key, value]) => (
                           <div key={key} className="bg-white p-2 rounded">
                             <span className="text-gray-500 capitalize">{key.replace('_', ' ')}:</span>
                             <span className="ml-2 font-medium">{String(value)}</span>
                           </div>
-                        )
-                      ))}
+                        ))}
                     </div>
                   </div>
                 )}

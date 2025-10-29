@@ -133,7 +133,7 @@ export function DashboardEnhanced() {
                 <p className="text-sm font-medium text-gray-900">{user.full_name}</p>
                 <p className="text-xs text-gray-500">{user.email}</p>
               </div>
-              <RoleBadge roleName={user.role_name} />
+              <RoleBadge role={user.role_name} />
               <button
                 onClick={signOut}
                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
@@ -160,32 +160,24 @@ export function DashboardEnhanced() {
             <StatsCard
               title="Total Documents"
               value={stats.totalDocuments}
-              icon="📄"
-              color="blue"
             />
             <StatsCard
               title="Pending Review"
               value={stats.pendingReview}
-              icon="⏳"
-              color="yellow"
-              trend={{ value: '12%', isPositive: false }}
+              trend={{ value: 12, isPositive: false }}
             />
             <StatsCard
               title="Approved"
               value={stats.approved}
-              icon="✅"
-              color="green"
-              trend={{ value: '8%', isPositive: true }}
+              trend={{ value: 8, isPositive: true }}
             />
             <StatsCard
               title="Avg Confidence"
               value={`${(stats.avgConfidence * 100).toFixed(1)}%`}
-              icon="🎯"
-              color="purple"
             />
           </div>
 
-          <DocumentList />
+          <DocumentList documents={[]} />
 
           <div className="mt-8 bg-white shadow rounded-lg p-6">
             <h3 className="text-lg font-medium text-gray-900 mb-4">System Status</h3>

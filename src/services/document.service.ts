@@ -28,13 +28,16 @@ class DocumentService {
         throw new Error('Document not found')
       }
 
-      await auditLogger.log(
-        user,
-        'document_processing',
-        'document',
-        documentId,
-        { action: 'start_processing', document_type: document.document_type }
-      )
+      await auditLogger.log({
+        user_id: user.user_id,
+        role_name: user.role_name,
+        action: 'start_processing',
+        module_name: 'document_processing',
+        resource_type: 'document',
+        resource_id: documentId,
+        success: true,
+        details: { document_type: document.document_type }
+      })
 
       const ocrText = document.ocr_text || await openaiService.generateOCRText(document.document_type)
 
@@ -90,18 +93,20 @@ class DocumentService {
         status: 'ai_proposed'
       })
 
-      await auditLogger.log(
-        user,
-        'document_processing',
-        'document',
-        documentId,
-        {
-          action: 'processing_complete',
+      await auditLogger.log({
+        user_id: user.user_id,
+        role_name: user.role_name,
+        action: 'processing_complete',
+        module_name: 'document_processing',
+        resource_type: 'document',
+        resource_id: documentId,
+        success: true,
+        details: {
           verdict: aiVerdict,
           confidence: classification.confidence,
           duplicates_found: duplicates.length
         }
-      )
+      })
 
       return {
         success: true,
@@ -114,14 +119,16 @@ class DocumentService {
         similarDocuments: similarDocs.slice(0, 3)
       }
     } catch (error) {
-      await auditLogger.log(
-        user,
-        'document_processing',
-        'document',
-        documentId,
-        { action: 'processing_failed', error: String(error) },
-        false
-      )
+      await auditLogger.log({
+        user_id: user.user_id,
+        role_name: user.role_name,
+        action: 'processing_failed',
+        module_name: 'document_processing',
+        resource_type: 'document',
+        resource_id: documentId,
+        success: false,
+        details: { error: String(error) }
+      })
 
       return {
         success: false,
@@ -140,18 +147,19 @@ class DocumentService {
     )
 
     const successCount = results.filter((r) => r.success).length
-    await auditLogger.log(
-      user,
-      'document_processing',
-      'batch',
-      null,
-      {
-        action: 'batch_processing',
+    await auditLogger.log({
+      user_id: user.user_id,
+      role_name: user.role_name,
+      action: 'batch_processing',
+      module_name: 'document_processing',
+      resource_type: 'batch',
+      success: true,
+      details: {
         total: documentIds.length,
         successful: successCount,
         failed: documentIds.length - successCount
       }
-    )
+    })
 
     return results
   }
@@ -194,17 +202,19 @@ class DocumentService {
         })
         .eq('document_id', documentId)
 
-      await auditLogger.log(
-        user,
-        'document_review',
-        'decision',
-        decision.decision_id,
-        {
-          action: 'officer_review',
+      await auditLogger.log({
+        user_id: user.user_id,
+        role_name: user.role_name,
+        action: 'officer_review',
+        module_name: 'document_review',
+        resource_type: 'decision',
+        resource_id: decision.decision_id,
+        success: true,
+        details: {
           officer_action: action,
           ai_verdict: decision.ai_verdict
         }
-      )
+      })
 
       return { success: true }
     } catch (error) {
@@ -252,17 +262,19 @@ class DocumentService {
           .eq('document_id', documentId)
       }
 
-      await auditLogger.log(
-        user,
-        'document_approval',
-        'decision',
-        decision.decision_id,
-        {
-          action: 'manager_decision',
+      await auditLogger.log({
+        user_id: user.user_id,
+        role_name: user.role_name,
+        action: 'manager_decision',
+        module_name: 'document_approval',
+        resource_type: 'decision',
+        resource_id: decision.decision_id,
+        success: true,
+        details: {
           manager_action: action,
           final_verdict: finalVerdict
         }
-      )
+      })
 
       return { success: true }
     } catch (error) {
@@ -303,18 +315,20 @@ class DocumentService {
 
       if (error) throw error
 
-      await auditLogger.log(
-        user,
-        'document_upload',
-        'document',
-        document.document_id,
-        {
-          action: 'document_uploaded',
+      await auditLogger.log({
+        user_id: user.user_id,
+        role_name: user.role_name,
+        action: 'document_uploaded',
+        module_name: 'document_upload',
+        resource_type: 'document',
+        resource_id: document.document_id,
+        success: true,
+        details: {
           document_type,
           file_name,
           file_size
         }
-      )
+      })
 
       return { success: true, documentId: document.document_id }
     } catch (error) {

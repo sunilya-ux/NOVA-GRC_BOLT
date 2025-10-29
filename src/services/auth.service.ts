@@ -244,11 +244,6 @@ class AuthService {
     return hashHex
   }
 
-  private async verifyPassword(password: string, hash: string): Promise<boolean> {
-    const passwordHash = await this.hashPassword(password)
-    return passwordHash === hash
-  }
-
   private generateToken(): string {
     const array = new Uint8Array(32)
     crypto.getRandomValues(array)

@@ -226,14 +226,14 @@ export function DocumentReview() {
                     <div>
                       <p className="text-sm font-medium text-gray-700 mb-2">Extracted Entities</p>
                       <div className="space-y-2">
-                        {Object.entries(selectedDoc.extracted_entities).map(([key, value]) => (
-                          value && (
+                        {Object.entries(selectedDoc.extracted_entities)
+                          .filter(([_, value]) => value)
+                          .map(([key, value]) => (
                             <div key={key} className="text-sm bg-gray-50 p-2 rounded">
                               <span className="text-gray-600 capitalize">{key.replace('_', ' ')}:</span>
                               <span className="ml-2 font-medium text-gray-900">{String(value)}</span>
                             </div>
-                          )
-                        ))}
+                          ))}
                       </div>
                     </div>
                   )}
