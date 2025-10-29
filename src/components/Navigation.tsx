@@ -1,6 +1,7 @@
 import { useAuthStore } from '@/stores/authStore'
 import { useLocation, Link } from 'react-router-dom'
 import { getAccessibleRoutes } from '@/lib/permissions'
+import { RoleBadge } from './RoleBadge'
 
 export function Navigation() {
   const { user, signOut } = useAuthStore()
@@ -47,6 +48,7 @@ export function Navigation() {
               <p className="text-sm font-medium text-gray-900">{user.full_name}</p>
               <p className="text-xs text-gray-500">{user.email}</p>
             </div>
+            <RoleBadge role={user.role_name} />
             <button
               onClick={signOut}
               className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"

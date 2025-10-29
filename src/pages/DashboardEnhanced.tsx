@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useAuthStore } from '@/stores/authStore'
-import { RoleBadge } from '@/components/RoleBadge'
+import { Navigation } from '@/components/Navigation'
 import { DocumentList } from '@/components/DocumentList'
 import { StatsCard } from '@/components/StatsCard'
 import { supabase } from '@/lib/supabase'
 
 export function DashboardEnhanced() {
-  const { user, signOut } = useAuthStore()
+  const { user } = useAuthStore()
   const [stats, setStats] = useState({
     totalDocuments: 0,
     pendingReview: 0,
@@ -68,82 +68,7 @@ export function DashboardEnhanced() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center space-x-8">
-              <div className="flex-shrink-0 flex items-center">
-                <div className="h-10 w-10 flex items-center justify-center rounded-full bg-blue-600">
-                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h1 className="text-xl font-bold text-gray-900">NOVA-GRC</h1>
-                  <p className="text-xs text-gray-500">AI-First Banking Compliance</p>
-                </div>
-              </div>
-              <nav className="flex space-x-4">
-                <a
-                  href="/dashboard"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 bg-gray-100"
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="/upload"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
-                >
-                  Upload
-                </a>
-                <a
-                  href="/processing"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
-                >
-                  Processing
-                </a>
-                <a
-                  href="/review"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
-                >
-                  Review
-                </a>
-                <a
-                  href="/search"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
-                >
-                  Search
-                </a>
-                <a
-                  href="/analytics"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
-                >
-                  Analytics
-                </a>
-                <a
-                  href="/bulk"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100"
-                >
-                  Bulk
-                </a>
-              </nav>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-sm font-medium text-gray-900">{user.full_name}</p>
-                <p className="text-xs text-gray-500">{user.email}</p>
-              </div>
-              <RoleBadge role={user.role_name} />
-              <button
-                onClick={signOut}
-                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-              >
-                Sign out
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
