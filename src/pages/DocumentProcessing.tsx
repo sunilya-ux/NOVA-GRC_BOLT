@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
 interface Document {
   document_id: string
   document_type: string
-  file_name: string
+  file_name?: string
   file_path: string
   mime_type: string
   status: string
@@ -19,6 +19,8 @@ export function DocumentProcessing() {
   const { user } = useAuthStore()
   const [documents, setDocuments] = useState<Document[]>([])
   const [processing, setProcessing] = useState<string | null>(null)
+  const [processingProgress, setProcessingProgress] = useState(0)
+  const [processingStep, setProcessingStep] = useState('')
   const [result, setResult] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
@@ -52,17 +54,39 @@ export function DocumentProcessing() {
 
     try {
       setProcessing(documentId)
+      setProcessingProgress(0)
       setResult(null)
 
-      const processingResult = await documentService.processDocument(documentId, user)
-      setResult(processingResult)
+      setProcessingStep('Extracting text with OCR...')
+      setProcessingProgress(20)
+      await new Promise(resolve => setTimeout(resolve, 500))
 
+      setProcessingStep('Classifying document with AI...')
+      setProcessingProgress(40)
+      await new Promise(resolve => setTimeout(resolve, 500))
+
+      setProcessingStep('Generating embeddings...')
+      setProcessingProgress(60)
+      await new Promise(resolve => setTimeout(resolve, 500))
+
+      setProcessingStep('Searching for similar documents...')
+      setProcessingProgress(80)
+
+      const processingResult = await documentService.processDocument(documentId, user)
+
+      setProcessingStep('Finalizing...')
+      setProcessingProgress(100)
+      await new Promise(resolve => setTimeout(resolve, 300))
+
+      setResult(processingResult)
       await loadDocuments()
     } catch (error) {
       console.error('Error processing document:', error)
       setResult({ success: false, error: String(error) })
     } finally {
       setProcessing(null)
+      setProcessingProgress(0)
+      setProcessingStep('')
     }
   }
 
@@ -86,6 +110,28 @@ export function DocumentProcessing() {
             Process KYC documents with OpenAI + Pinecone vector search
           </p>
         </div>
+
+        {processing && processingProgress > 0 && (
+          <div className="mb-6 p-6 bg-white border border-blue-200 rounded-lg shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-semibold text-gray-900">Processing Document...</h3>
+              <span className="text-sm font-medium text-blue-600">{processingProgress}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 mb-3 overflow-hidden">
+              <div
+                className="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${processingProgress}%` }}
+              />
+            </div>
+            <div className="flex items-center text-sm text-gray-600">
+              <svg className="animate-spin h-4 w-4 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              {processingStep}
+            </div>
+          </div>
+        )}
 
         {result && (
           <div className={`mb-6 p-4 rounded-lg ${result.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
