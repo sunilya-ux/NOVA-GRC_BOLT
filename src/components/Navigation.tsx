@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/stores/authStore'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 export function Navigation() {
   const { user, signOut } = useAuthStore()
@@ -35,9 +35,9 @@ export function Navigation() {
             </div>
             <nav className="flex space-x-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.path}
-                  href={item.path}
+                  to={item.path}
                   className={`px-3 py-2 rounded-md text-sm font-medium ${
                     location.pathname === item.path
                       ? 'text-gray-900 bg-gray-100'
@@ -45,7 +45,7 @@ export function Navigation() {
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
