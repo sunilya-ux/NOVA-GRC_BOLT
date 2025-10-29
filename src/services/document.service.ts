@@ -280,17 +280,22 @@ class DocumentService {
     user: User
   }) {
     try {
-      const { file_name, base64_content, document_type, priority, user } = params
+      const { file_name, file_size, mime_type, base64_content, document_type, priority, user } = params
+
+      const filePath = `data:${mime_type};base64,${base64_content}`
 
       const { data: document, error } = await supabase
         .from('documents')
         .insert({
           document_type,
           priority,
-          status: 'pending',
+          status: 'uploaded',
           uploaded_by: user.user_id,
+          assigned_to: user.user_id,
           file_name,
-          file_path: `${user.user_id}/${Date.now()}_${file_name}`,
+          file_path: filePath,
+          file_size,
+          mime_type,
           ocr_confidence: 0
         })
         .select()
@@ -306,7 +311,8 @@ class DocumentService {
         {
           action: 'document_uploaded',
           document_type,
-          file_name
+          file_name,
+          file_size
         }
       )
 
