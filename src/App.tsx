@@ -9,6 +9,7 @@ import { DocumentSearch } from './pages/DocumentSearch'
 import { Analytics } from './pages/Analytics'
 import { BulkProcessing } from './pages/BulkProcessing'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import { RoleGuard } from './components/RoleGuard'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { useAuthStore } from './stores/authStore'
 
@@ -36,7 +37,9 @@ function App() {
             path="/processing"
             element={
               <ProtectedRoute>
-                <DocumentProcessing />
+                <RoleGuard allowedRoles={['compliance_officer', 'compliance_manager', 'cco', 'internal_auditor']}>
+                  <DocumentProcessing />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />
@@ -44,7 +47,9 @@ function App() {
             path="/upload"
             element={
               <ProtectedRoute>
-                <DocumentUpload />
+                <RoleGuard allowedRoles={['compliance_officer', 'compliance_manager']}>
+                  <DocumentUpload />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />
@@ -52,7 +57,9 @@ function App() {
             path="/review"
             element={
               <ProtectedRoute>
-                <DocumentReview />
+                <RoleGuard allowedRoles={['compliance_officer', 'compliance_manager', 'cco', 'internal_auditor']}>
+                  <DocumentReview />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />
@@ -60,7 +67,9 @@ function App() {
             path="/search"
             element={
               <ProtectedRoute>
-                <DocumentSearch />
+                <RoleGuard allowedRoles={['compliance_officer', 'compliance_manager', 'cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']}>
+                  <DocumentSearch />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />
@@ -68,7 +77,9 @@ function App() {
             path="/analytics"
             element={
               <ProtectedRoute>
-                <Analytics />
+                <RoleGuard allowedRoles={['compliance_manager', 'cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']}>
+                  <Analytics />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />
@@ -76,7 +87,9 @@ function App() {
             path="/bulk"
             element={
               <ProtectedRoute>
-                <BulkProcessing />
+                <RoleGuard allowedRoles={['compliance_manager', 'cco']}>
+                  <BulkProcessing />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />

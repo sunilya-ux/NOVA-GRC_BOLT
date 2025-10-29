@@ -1,5 +1,6 @@
 import { useAuthStore } from '@/stores/authStore'
 import { useLocation, Link } from 'react-router-dom'
+import { getAccessibleRoutes } from '@/lib/permissions'
 
 export function Navigation() {
   const { user, signOut } = useAuthStore()
@@ -7,15 +8,7 @@ export function Navigation() {
 
   if (!user) return null
 
-  const navItems = [
-    { path: '/dashboard', label: 'Dashboard' },
-    { path: '/upload', label: 'Upload' },
-    { path: '/processing', label: 'Processing' },
-    { path: '/review', label: 'Review' },
-    { path: '/search', label: 'Search' },
-    { path: '/analytics', label: 'Analytics' },
-    { path: '/bulk', label: 'Bulk' },
-  ]
+  const navItems = getAccessibleRoutes(user.role_name)
 
   return (
     <nav className="bg-white shadow">
