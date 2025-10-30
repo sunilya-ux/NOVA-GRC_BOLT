@@ -5,9 +5,11 @@ import { DashboardEnhanced } from './pages/DashboardEnhanced'
 import { DocumentProcessing } from './pages/DocumentProcessing'
 import { DocumentUpload } from './pages/DocumentUpload'
 import { DocumentReview } from './pages/DocumentReview'
+import { ManagerApproval } from './pages/ManagerApproval'
 import { DocumentSearch } from './pages/DocumentSearch'
 import { Analytics } from './pages/Analytics'
 import { BulkProcessing } from './pages/BulkProcessing'
+import { AuditLogs } from './pages/AuditLogs'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { RoleGuard } from './components/RoleGuard'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -64,6 +66,16 @@ function App() {
             }
           />
           <Route
+            path="/approvals"
+            element={
+              <ProtectedRoute>
+                <RoleGuard allowedRoles={['compliance_manager', 'cco']}>
+                  <ManagerApproval />
+                </RoleGuard>
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/search"
             element={
               <ProtectedRoute>
@@ -90,6 +102,14 @@ function App() {
                 <RoleGuard allowedRoles={['compliance_manager', 'cco']}>
                   <BulkProcessing />
                 </RoleGuard>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/audit-logs"
+            element={
+              <ProtectedRoute>
+                <AuditLogs />
               </ProtectedRoute>
             }
           />

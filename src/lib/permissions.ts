@@ -236,6 +236,11 @@ export const routePermissions: RoutePermissions[] = [
     allowedRoles: ['compliance_officer', 'compliance_manager', 'cco']
   },
   {
+    path: '/approvals',
+    label: 'Approvals',
+    allowedRoles: ['compliance_manager', 'cco']
+  },
+  {
     path: '/search',
     label: 'Search',
     allowedRoles: [
@@ -257,6 +262,18 @@ export const routePermissions: RoutePermissions[] = [
     path: '/bulk',
     label: 'Bulk',
     allowedRoles: ['compliance_manager', 'cco']
+  },
+  {
+    path: '/audit-logs',
+    label: 'My Activity',
+    allowedRoles: [
+      'compliance_officer',
+      'compliance_manager',
+      'cco',
+      'ciso',
+      'internal_auditor',
+      'dpo'
+    ]
   }
 ]
 

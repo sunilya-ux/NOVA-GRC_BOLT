@@ -41,7 +41,7 @@ export function DocumentReview() {
 
     try {
       setLoading(true)
-      const { data, error } = await supabase
+      let query = supabase
         .from('documents')
         .select(`
           document_id,
@@ -50,6 +50,8 @@ export function DocumentReview() {
           priority,
           created_at,
           extracted_entities,
+          file_name,
+          assigned_to,
           decisions!inner(
             decision_id,
             ai_verdict,
@@ -60,7 +62,12 @@ export function DocumentReview() {
           )
         `)
         .eq('decisions.status', 'ai_proposed')
-        .order('created_at', { ascending: false })
+
+      if (user.role_name === 'compliance_officer') {
+        query = query.eq('assigned_to', user.user_id)
+      }
+
+      const { data, error } = await query.order('created_at', { ascending: false })
 
       if (!error && data) {
         const formatted = data.map((doc: any) => ({
