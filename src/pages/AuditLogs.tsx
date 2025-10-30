@@ -178,17 +178,17 @@ export function AuditLogs() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`text-sm font-medium ${getActionColor(log.success)}`}>
-                          {log.action.replace(/_/g, ' ').toUpperCase()}
+                          {log.action ? log.action.replace(/_/g, ' ').toUpperCase() : 'N/A'}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {log.module_name.replace(/_/g, ' ')}
+                        {log.module_name ? log.module_name.replace(/_/g, ' ') : 'N/A'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <div>
-                          <div className="text-xs text-gray-400">{log.resource_type}</div>
+                          <div className="text-xs text-gray-400">{log.resource_type || 'N/A'}</div>
                           <div className="font-mono text-xs">
-                            {log.resource_id?.substring(0, 8)}...
+                            {log.resource_id ? `${log.resource_id.substring(0, 8)}...` : 'N/A'}
                           </div>
                         </div>
                       </td>
