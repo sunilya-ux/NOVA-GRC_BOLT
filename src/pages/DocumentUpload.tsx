@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '@/stores/authStore'
-import { Navigation } from '@/components/Navigation'
+
 import { documentService } from '@/services/document.service'
 
 const DOCUMENT_TYPES = ['PAN', 'Aadhaar', 'Passport', 'Driving License', 'Voter ID']
@@ -69,7 +69,7 @@ export function DocumentUpload() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Upload Document</h1>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuthStore } from '@/stores/authStore'
-import { Navigation } from '@/components/Navigation'
+
 import { rbacComplianceService } from '@/services/rbac-compliance.service'
 import type { DPDPComplianceReport, ComplianceViolation } from '@/services/rbac-compliance.service'
 
@@ -67,7 +67,7 @@ export function ComplianceDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <Navigation />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Compliance Dashboard</h1>

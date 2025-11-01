@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useAuthStore } from '../stores/authStore'
+import { Navigation } from './Navigation'
 
 interface ProtectedRouteProps {
   children: React.ReactNode
@@ -20,5 +21,12 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     return <Navigate to="/login" replace />
   }
 
-  return <>{children}</>
+  return (
+    <div className="flex h-screen overflow-hidden">
+      <Navigation />
+      <main className="flex-1 overflow-y-auto bg-gray-50">
+        {children}
+      </main>
+    </div>
+  )
 }

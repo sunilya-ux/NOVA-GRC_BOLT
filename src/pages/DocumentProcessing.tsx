@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuthStore } from '@/stores/authStore'
-import { Navigation } from '@/components/Navigation'
+
 import { documentService } from '@/services/document.service'
 import { openaiService } from '@/services/openai.service'
 import { pineconeService } from '@/services/pinecone.service'
@@ -141,7 +141,7 @@ export function DocumentProcessing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <Navigation />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">AI Document Processing</h1>
