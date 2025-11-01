@@ -89,7 +89,7 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewOwnDocuments: false,
     canViewTeamDocuments: false,
     canViewAllDocuments: true,
-    canProcessDocuments: true,
+    canProcessDocuments: false,
     canApproveDocuments: false,
     canRejectDocuments: false,
     canReassignDocuments: false,
@@ -99,8 +99,8 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewAnalytics: true,
     canExportReports: true,
     canSearchDocuments: true,
-    canViewOwnAuditLogs: true,
-    canViewTeamAuditLogs: true,
+    canViewOwnAuditLogs: false,
+    canViewTeamAuditLogs: false,
     canViewAllAuditLogs: true,
   },
   system_admin: {
@@ -143,10 +143,10 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
   },
   internal_auditor: {
     canUploadDocuments: false,
-    canViewOwnDocuments: true,
-    canViewTeamDocuments: true,
+    canViewOwnDocuments: false,
+    canViewTeamDocuments: false,
     canViewAllDocuments: true,
-    canProcessDocuments: true,
+    canProcessDocuments: false,
     canApproveDocuments: false,
     canRejectDocuments: false,
     canReassignDocuments: false,
@@ -156,8 +156,8 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewAnalytics: true,
     canExportReports: true,
     canSearchDocuments: true,
-    canViewOwnAuditLogs: true,
-    canViewTeamAuditLogs: true,
+    canViewOwnAuditLogs: false,
+    canViewTeamAuditLogs: false,
     canViewAllAuditLogs: true,
   },
   dpo: {
@@ -184,7 +184,7 @@ const roleFeaturePermissions: Record<RoleName, FeaturePermission> = {
     canViewOwnDocuments: false,
     canViewTeamDocuments: false,
     canViewAllDocuments: true,
-    canProcessDocuments: true,
+    canProcessDocuments: false,
     canApproveDocuments: false,
     canRejectDocuments: false,
     canReassignDocuments: false,
@@ -207,7 +207,7 @@ export function getUserPermissions(role: RoleName): FeaturePermission {
 export const routePermissions: RoutePermissions[] = [
   {
     path: '/dashboard',
-    label: 'Dashboard',
+    label: 'Main Dashboard',
     allowedRoles: [
       'compliance_officer',
       'compliance_manager',
@@ -228,7 +228,7 @@ export const routePermissions: RoutePermissions[] = [
   {
     path: '/processing',
     label: 'Processing',
-    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco', 'ciso', 'external_auditor']
+    allowedRoles: ['compliance_officer', 'compliance_manager', 'cco', 'internal_auditor']
   },
   {
     path: '/review',
@@ -273,6 +273,30 @@ export const routePermissions: RoutePermissions[] = [
       'ciso',
       'internal_auditor',
       'dpo'
+    ]
+  },
+  {
+    path: '/ai-explainability',
+    label: 'AI Explainability',
+    allowedRoles: [
+      'compliance_officer',
+      'compliance_manager',
+      'cco',
+      'ciso',
+      'internal_auditor',
+      'dpo',
+      'external_auditor'
+    ]
+  },
+  {
+    path: '/compliance-dashboard',
+    label: 'Compliance Dashboard',
+    allowedRoles: [
+      'cco',
+      'ciso',
+      'internal_auditor',
+      'dpo',
+      'external_auditor'
     ]
   }
 ]

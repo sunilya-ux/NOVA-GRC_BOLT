@@ -122,11 +122,8 @@ export function DocumentReview() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Document Review Queue</h1>
-          <p className="mt-2 text-gray-600">
-            Review AI-classified documents and approve or reject decisions
-          </p>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">Document Approvals</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -202,6 +199,13 @@ export function DocumentReview() {
               <div className="bg-white shadow rounded-lg p-6 sticky top-8">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Review Details</h3>
 
+                <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <strong>Maker-Checker Workflow:</strong> As a Compliance Officer (Maker), you can agree or disagree with AI decisions.
+                    If you disagree, this will escalate to a Manager (Checker) for final approval.
+                  </p>
+                </div>
+
                 <div className="space-y-4 mb-6">
                   <div>
                     <p className="text-sm font-medium text-gray-700">Document Type</p>
@@ -255,24 +259,31 @@ export function DocumentReview() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Your Decision
                     </label>
-                    <div className="space-y-2 mb-4">
-                      <label className="flex items-center">
+                    <div className="space-y-3 mb-4">
+                      <div className="text-sm font-medium text-gray-700 mb-2">Your Decision:</div>
+                      <label className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <input
                           type="radio"
                           checked={reviewAction === 'AGREE'}
                           onChange={() => setReviewAction('AGREE')}
-                          className="mr-2"
+                          className="mr-3"
                         />
-                        <span className="text-sm text-gray-900">Agree with AI</span>
+                        <div>
+                          <span className="text-sm font-medium text-gray-900">Agree with AI</span>
+                          <p className="text-xs text-gray-600">Finalize the decision - document approved/rejected</p>
+                        </div>
                       </label>
-                      <label className="flex items-center">
+                      <label className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <input
                           type="radio"
                           checked={reviewAction === 'DISAGREE'}
                           onChange={() => setReviewAction('DISAGREE')}
-                          className="mr-2"
+                          className="mr-3"
                         />
-                        <span className="text-sm text-gray-900">Disagree with AI</span>
+                        <div>
+                          <span className="text-sm font-medium text-gray-900">Disagree with AI</span>
+                          <p className="text-xs text-gray-600">Escalate to Manager for final approval</p>
+                        </div>
                       </label>
                     </div>
 

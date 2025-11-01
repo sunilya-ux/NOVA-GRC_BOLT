@@ -39,8 +39,8 @@ export function DocumentSearch() {
       const embedding = await openaiService.generateEmbedding(searchQuery)
 
       const vectorResults = documentType !== 'All'
-        ? await pineconeService.findSimilarByDocumentType(embedding, documentType, 20)
-        : await pineconeService.searchSimilarDocuments(embedding, 20)
+        ? await pineconeService.findSimilarByDocumentType(embedding, documentType, 50)
+        : await pineconeService.searchSimilarDocuments(embedding, 50)
 
       const documentIds = vectorResults.map((r: any) => r.id)
 
@@ -53,6 +53,7 @@ export function DocumentSearch() {
         .from('documents')
         .select('*')
         .in('document_id', documentIds)
+        .order('created_at', { ascending: false })
 
       if (status !== 'All') {
         query = query.eq('status', status)
@@ -71,6 +72,9 @@ export function DocumentSearch() {
 
         resultsWithScores.sort((a, b) => b.score - a.score)
         setResults(resultsWithScores)
+      } else {
+        console.error('Semantic search error:', error)
+        setResults([])
       }
     } catch (error) {
       console.error('Error searching:', error)
@@ -91,7 +95,7 @@ export function DocumentSearch() {
         .select('*')
         .or(`ocr_text.ilike.%${searchQuery}%,extracted_entities->>name.ilike.%${searchQuery}%,extracted_entities->>document_number.ilike.%${searchQuery}%`)
         .order('created_at', { ascending: false })
-        .limit(20)
+        .limit(50)
 
       if (documentType !== 'All') {
         query = query.eq('document_type', documentType)
@@ -105,9 +109,13 @@ export function DocumentSearch() {
 
       if (!error && data) {
         setResults(data.map(doc => ({ ...doc, score: 1 })))
+      } else {
+        console.error('Search error:', error)
+        setResults([])
       }
     } catch (error) {
       console.error('Error searching:', error)
+      setResults([])
     } finally {
       setSearching(false)
     }
@@ -125,11 +133,8 @@ export function DocumentSearch() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Document Search</h1>
-          <p className="mt-2 text-gray-600">
-            Search documents using AI-powered semantic search or traditional keyword matching
-          </p>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">Document Search</h1>
         </div>
 
         <div className="bg-white shadow rounded-lg p-6 mb-6">

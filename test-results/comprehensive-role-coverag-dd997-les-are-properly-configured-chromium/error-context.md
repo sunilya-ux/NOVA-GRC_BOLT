@@ -1,0 +1,55 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - img [ref=e8]
+    - heading "Welcome to NOVA-GRC" [level=2] [ref=e10]
+    - paragraph [ref=e11]: AI-First Banking Compliance Platform
+  - generic [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: Email address
+        - textbox "Email address" [ref=e17]:
+          - /placeholder: officer@bank.com
+      - generic [ref=e18]:
+        - generic [ref=e19]: Password
+        - textbox "Password" [ref=e21]
+      - button "Sign in" [ref=e23] [cursor=pointer]
+    - generic [ref=e24]:
+      - generic [ref=e29]: Demo Credentials
+      - generic [ref=e30]:
+        - paragraph [ref=e31]: "Click any role to auto-fill credentials (Password: demo123)"
+        - generic [ref=e32]:
+          - button "Compliance Officer officer@demo.com" [ref=e33] [cursor=pointer]:
+            - strong [ref=e34]: Compliance Officer
+            - paragraph [ref=e35]: officer@demo.com
+          - button "Compliance Manager manager@demo.com" [ref=e36] [cursor=pointer]:
+            - strong [ref=e37]: Compliance Manager
+            - paragraph [ref=e38]: manager@demo.com
+          - button "CCO cco@demo.com" [ref=e39] [cursor=pointer]:
+            - strong [ref=e40]: CCO
+            - paragraph [ref=e41]: cco@demo.com
+          - button "System Admin admin@demo.com" [ref=e42] [cursor=pointer]:
+            - strong [ref=e43]: System Admin
+            - paragraph [ref=e44]: admin@demo.com
+          - button "ML Engineer mlengineer@demo.com" [ref=e45] [cursor=pointer]:
+            - strong [ref=e46]: ML Engineer
+            - paragraph [ref=e47]: mlengineer@demo.com
+          - button "CISO ciso@demo.com" [ref=e48] [cursor=pointer]:
+            - strong [ref=e49]: CISO
+            - paragraph [ref=e50]: ciso@demo.com
+          - button "Internal Auditor auditor@demo.com" [ref=e51] [cursor=pointer]:
+            - strong [ref=e52]: Internal Auditor
+            - paragraph [ref=e53]: auditor@demo.com
+          - button "DPO dpo@demo.com" [ref=e54] [cursor=pointer]:
+            - strong [ref=e55]: DPO
+            - paragraph [ref=e56]: dpo@demo.com
+          - button "External Auditor external@demo.com" [ref=e57] [cursor=pointer]:
+            - strong [ref=e58]: External Auditor
+            - paragraph [ref=e59]: external@demo.com
+        - paragraph [ref=e60]: + 2 more users for testing team segregation (officer2@demo.com, manager2@demo.com)
+  - generic [ref=e61]:
+    - paragraph [ref=e62]: Protected by Role-Based Access Control (RBAC)
+    - paragraph [ref=e63]: Sprint 1 - Foundation Implementation
+```

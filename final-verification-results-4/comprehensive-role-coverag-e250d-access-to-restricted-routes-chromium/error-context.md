@@ -1,0 +1,69 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - img [ref=e10]
+          - generic [ref=e12]:
+            - heading "NOVA-GRC" [level=1] [ref=e13]
+            - paragraph [ref=e14]: AI-First Banking Compliance
+        - navigation [ref=e15]:
+          - link "Main Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - paragraph [ref=e19]: Vikram Singh
+          - paragraph [ref=e20]: admin@demo.com
+        - generic [ref=e21]: System Admin
+        - button "Sign Out" [ref=e22] [cursor=pointer]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - heading "Welcome back, Vikram Singh!" [level=2] [ref=e26]
+      - paragraph [ref=e27]: Here's what's happening with your documents today.
+    - generic [ref=e28]:
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Total Documents
+        - paragraph [ref=e33]: "10"
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: Pending Review
+        - paragraph [ref=e38]: "5"
+        - generic [ref=e39]:
+          - generic [ref=e40]: ↓ 12%
+          - generic [ref=e41]: vs last month
+      - generic [ref=e44]:
+        - paragraph [ref=e45]: Approved
+        - paragraph [ref=e46]: "1"
+        - generic [ref=e47]:
+          - generic [ref=e48]: ↑ 8%
+          - generic [ref=e49]: vs last month
+      - generic [ref=e52]:
+        - paragraph [ref=e53]: Avg Confidence
+        - paragraph [ref=e54]: 96.3%
+    - generic [ref=e56]: No documents found
+    - generic [ref=e57]:
+      - heading "System Status" [level=3] [ref=e58]
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - img [ref=e62]
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: RBAC Enabled
+            - paragraph [ref=e66]: 9 roles, 24 permissions
+        - generic [ref=e67]:
+          - img [ref=e69]
+          - generic [ref=e71]:
+            - paragraph [ref=e72]: Audit Logging
+            - paragraph [ref=e73]: 100% coverage active
+        - generic [ref=e74]:
+          - img [ref=e76]
+          - generic [ref=e78]:
+            - paragraph [ref=e79]: RLS Active
+            - paragraph [ref=e80]: Row-level security
+    - generic [ref=e82]:
+      - img [ref=e84]
+      - paragraph [ref=e87]:
+        - strong [ref=e88]: "Sprint 1 Complete:"
+        - text: RBAC foundation is fully operational with 11 demo users, 5 sample documents, and complete audit logging. Ready for Sprint 2 AI integration.
+```

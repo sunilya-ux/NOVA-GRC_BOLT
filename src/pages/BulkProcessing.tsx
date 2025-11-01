@@ -119,17 +119,26 @@ export function BulkProcessing() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Bulk Document Processing</h1>
-          <p className="mt-2 text-gray-600">
-            Process multiple documents at once with AI-powered classification
-          </p>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">Bulk Document Processing</h1>
         </div>
 
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
+        <div className="bg-white shadow-xl rounded-xl border border-gray-100 p-6 mb-6">
+          <div className="mb-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <div className="h-8 w-8 rounded-lg bg-orange-100 flex items-center justify-center">
+                <svg className="h-4 w-4 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-semibold text-gray-900">Select documents for bulk processing</h2>
+            </div>
+            <p className="text-gray-600">Choose multiple documents to process simultaneously with AI classification</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -184,15 +193,15 @@ export function BulkProcessing() {
             <button
               onClick={handleBulkProcess}
               disabled={selectedCount === 0 || processing}
-              className={`px-6 py-2 rounded-md text-sm font-medium text-white ${
+              className={`px-8 py-3 rounded-xl text-sm font-medium text-white transition-all duration-200 shadow-lg ${
                 selectedCount === 0 || processing
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                  : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-105'
               }`}
             >
               {processing ? (
                 <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -206,8 +215,17 @@ export function BulkProcessing() {
         </div>
 
         {results.length > 0 && (
-          <div className="bg-white shadow rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Processing Results</h3>
+          <div className="bg-white shadow-xl rounded-xl border border-gray-100 p-6 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-3">
+                <div className="h-8 w-8 rounded-lg bg-green-100 flex items-center justify-center">
+                  <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">Processing Results</h3>
+              </div>
+            </div>
             <div className="space-y-2">
               {results.map((result) => (
                 <div
@@ -240,9 +258,9 @@ export function BulkProcessing() {
           </div>
         )}
 
-        <div className="bg-white shadow rounded-lg overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+        <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100">
+           <div className="overflow-x-auto">
+             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left">

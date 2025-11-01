@@ -1,0 +1,76 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - img [ref=e10]
+          - generic [ref=e12]:
+            - heading "NOVA-GRC" [level=1] [ref=e13]
+            - paragraph [ref=e14]: AI-First Banking Compliance
+        - navigation [ref=e15]:
+          - link "Main Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "Upload" [ref=e17] [cursor=pointer]:
+            - /url: /upload
+          - link "Processing" [ref=e18] [cursor=pointer]:
+            - /url: /processing
+          - link "Review" [ref=e19] [cursor=pointer]:
+            - /url: /review
+          - link "Search" [ref=e20] [cursor=pointer]:
+            - /url: /search
+          - link "Analytics" [ref=e21] [cursor=pointer]:
+            - /url: /analytics
+          - link "My Activity" [ref=e22] [cursor=pointer]:
+            - /url: /audit-logs
+          - link "AI Explainability" [ref=e23] [cursor=pointer]:
+            - /url: /ai-explainability
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: Priya Sharma
+          - paragraph [ref=e27]: officer@demo.com
+        - generic [ref=e28]: Compliance Officer
+        - button "Sign Out" [ref=e29] [cursor=pointer]
+  - generic [ref=e30]:
+    - generic [ref=e31]:
+      - heading "Upload Document" [level=1] [ref=e32]
+      - paragraph [ref=e33]: Upload KYC documents for AI-powered processing and verification
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]: Document Type
+        - combobox [ref=e38]:
+          - option "PAN" [selected]
+          - option "Aadhaar"
+          - option "Passport"
+          - option "Driving License"
+          - option "Voter ID"
+      - generic [ref=e39]:
+        - generic [ref=e40]: Priority Level
+        - combobox [ref=e41]:
+          - option "Low"
+          - option "Medium" [selected]
+          - option "High"
+          - option "Urgent"
+      - generic [ref=e42]:
+        - generic [ref=e43]: Document Image
+        - generic [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]:
+            - img [ref=e47]
+            - paragraph [ref=e49]: Click to upload or drag and drop
+            - paragraph [ref=e50]: "Supported formats: PNG, JPG up to 5MB"
+          - 'button "Click to upload or drag and drop Supported formats: PNG, JPG up to 5MB" [ref=e51]'
+      - generic [ref=e52]:
+        - button "Cancel" [ref=e53] [cursor=pointer]
+        - button "Upload & Process" [disabled] [ref=e54]
+    - generic [ref=e55]:
+      - heading "What happens next?" [level=3] [ref=e56]
+      - list [ref=e57]:
+        - listitem [ref=e58]: ✓ Document uploaded to Supabase Storage
+        - listitem [ref=e59]: ✓ OCR text extraction (simulated)
+        - listitem [ref=e60]: ✓ AI classification via OpenAI GPT-4
+        - listitem [ref=e61]: ✓ Vector embedding stored in Pinecone
+        - listitem [ref=e62]: ✓ Duplicate detection and similarity matching
+        - listitem [ref=e63]: ✓ Compliance verdict generated
+```

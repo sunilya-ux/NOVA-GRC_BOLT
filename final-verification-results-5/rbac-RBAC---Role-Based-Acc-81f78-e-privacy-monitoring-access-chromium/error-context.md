@@ -1,0 +1,79 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - img [ref=e10]
+          - generic [ref=e12]:
+            - heading "NOVA-GRC" [level=1] [ref=e13]
+            - paragraph [ref=e14]: AI-First Banking Compliance
+        - navigation [ref=e15]:
+          - link "Main Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "Search" [ref=e17] [cursor=pointer]:
+            - /url: /search
+          - link "Analytics" [ref=e18] [cursor=pointer]:
+            - /url: /analytics
+          - link "My Activity" [ref=e19] [cursor=pointer]:
+            - /url: /audit-logs
+          - link "AI Explainability" [ref=e20] [cursor=pointer]:
+            - /url: /ai-explainability
+          - link "Compliance Dashboard" [ref=e21] [cursor=pointer]:
+            - /url: /compliance-dashboard
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - paragraph [ref=e24]: Meena Iyer
+          - paragraph [ref=e25]: dpo@demo.com
+        - generic [ref=e26]: DPO
+        - button "Sign Out" [ref=e27] [cursor=pointer]
+  - generic [ref=e29]:
+    - generic [ref=e30]:
+      - heading "Welcome back, Meena Iyer!" [level=2] [ref=e31]
+      - paragraph [ref=e32]: Here's what's happening with your documents today.
+    - generic [ref=e33]:
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: Total Documents
+        - paragraph [ref=e38]: "10"
+      - generic [ref=e41]:
+        - paragraph [ref=e42]: Pending Review
+        - paragraph [ref=e43]: "5"
+        - generic [ref=e44]:
+          - generic [ref=e45]: ↓ 12%
+          - generic [ref=e46]: vs last month
+      - generic [ref=e49]:
+        - paragraph [ref=e50]: Approved
+        - paragraph [ref=e51]: "1"
+        - generic [ref=e52]:
+          - generic [ref=e53]: ↑ 8%
+          - generic [ref=e54]: vs last month
+      - generic [ref=e57]:
+        - paragraph [ref=e58]: Avg Confidence
+        - paragraph [ref=e59]: 96.3%
+    - generic [ref=e61]: No documents found
+    - generic [ref=e62]:
+      - heading "System Status" [level=3] [ref=e63]
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - img [ref=e67]
+          - generic [ref=e69]:
+            - paragraph [ref=e70]: RBAC Enabled
+            - paragraph [ref=e71]: 9 roles, 24 permissions
+        - generic [ref=e72]:
+          - img [ref=e74]
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: Audit Logging
+            - paragraph [ref=e78]: 100% coverage active
+        - generic [ref=e79]:
+          - img [ref=e81]
+          - generic [ref=e83]:
+            - paragraph [ref=e84]: RLS Active
+            - paragraph [ref=e85]: Row-level security
+    - generic [ref=e87]:
+      - img [ref=e89]
+      - paragraph [ref=e92]:
+        - strong [ref=e93]: "Sprint 1 Complete:"
+        - text: RBAC foundation is fully operational with 11 demo users, 5 sample documents, and complete audit logging. Ready for Sprint 2 AI integration.
+```

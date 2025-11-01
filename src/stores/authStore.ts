@@ -50,13 +50,33 @@ export const useAuthStore = create<AuthState>()(
       },
 
       signOut: async () => {
-        await authService.signOut()
-        set({
-          user: null,
-          token: null,
-          isAuthenticated: false,
-          error: null,
-        })
+        set({ isLoading: true, error: null })
+        try {
+          await authService.signOut()
+          // Clear local storage and redirect to login
+          localStorage.removeItem('nova-grc-auth')
+          set({
+            user: null,
+            token: null,
+            isAuthenticated: false,
+            error: null,
+            isLoading: false,
+          })
+          // Force page reload to clear all state and redirect
+          window.location.href = '/login'
+        } catch (error) {
+          console.error('Sign out error:', error)
+          // Even if sign out fails, clear state and redirect
+          localStorage.removeItem('nova-grc-auth')
+          set({
+            user: null,
+            token: null,
+            isAuthenticated: false,
+            error: null,
+            isLoading: false,
+          })
+          window.location.href = '/login'
+        }
       },
 
       checkSession: async () => {

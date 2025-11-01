@@ -1,0 +1,73 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - img [ref=e10]
+          - generic [ref=e12]:
+            - heading "NOVA-GRC" [level=1] [ref=e13]
+            - paragraph [ref=e14]: AI-First Banking Compliance
+        - navigation [ref=e15]:
+          - link "Main Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "Processing" [ref=e17] [cursor=pointer]:
+            - /url: /processing
+          - link "Review" [ref=e18] [cursor=pointer]:
+            - /url: /review
+          - link "Approvals" [ref=e19] [cursor=pointer]:
+            - /url: /approvals
+          - link "Search" [ref=e20] [cursor=pointer]:
+            - /url: /search
+          - link "Analytics" [ref=e21] [cursor=pointer]:
+            - /url: /analytics
+          - link "Bulk" [ref=e22] [cursor=pointer]:
+            - /url: /bulk
+          - link "My Activity" [ref=e23] [cursor=pointer]:
+            - /url: /audit-logs
+          - link "AI Explainability" [ref=e24] [cursor=pointer]:
+            - /url: /ai-explainability
+          - link "Compliance Dashboard" [ref=e25] [cursor=pointer]:
+            - /url: /compliance-dashboard
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: Anita Desai
+          - paragraph [ref=e29]: cco@demo.com
+        - generic [ref=e30]: CCO
+        - button "Sign Out" [ref=e31] [cursor=pointer]
+  - generic [ref=e32]:
+    - generic [ref=e33]:
+      - heading "AI Explainability" [level=1] [ref=e34]
+      - paragraph [ref=e35]: Understand AI decision-making with bias detection and explainability reports
+    - generic [ref=e36]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - heading "AI-Decided Documents" [level=2] [ref=e40]
+          - paragraph [ref=e41]: Click any document to view detailed explainability
+        - generic [ref=e42]:
+          - generic [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]:
+              - heading "PAN - PAN-1.jpeg" [level=3] [ref=e47]
+              - paragraph [ref=e49]: "Processed: 10/29/2025, 4:06:20 PM"
+            - img [ref=e50]
+          - generic [ref=e53] [cursor=pointer]:
+            - generic [ref=e54]:
+              - heading "PAN -" [level=3] [ref=e56]
+              - paragraph [ref=e58]: "Processed: 10/29/2025, 10:08:35 AM"
+            - img [ref=e59]
+          - generic [ref=e62] [cursor=pointer]:
+            - generic [ref=e63]:
+              - heading "Aadhaar -" [level=3] [ref=e65]
+              - paragraph [ref=e67]: "Processed: 10/29/2025, 10:08:35 AM"
+            - img [ref=e68]
+      - generic [ref=e71]:
+        - img [ref=e72]
+        - paragraph [ref=e74]: Select a document to view AI explainability analysis
+    - generic [ref=e76]:
+      - img [ref=e78]
+      - paragraph [ref=e81]:
+        - strong [ref=e82]: "AI Explainability:"
+        - text: This dashboard provides complete transparency into AI decision-making, including bias detection, confidence intervals, and detailed reasoning. All decisions are auditable and include risk assessments to ensure compliance and fairness.
+```

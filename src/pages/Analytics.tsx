@@ -140,13 +140,8 @@ export function Analytics() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-            <p className="mt-2 text-gray-600">
-              Comprehensive insights into document processing and AI performance
-            </p>
-          </div>
+        <div className="mb-6 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-gray-900">Analytics Dashboard</h1>
           <div className="flex space-x-2">
             {(['7d', '30d', '90d'] as const).map((range) => (
               <button

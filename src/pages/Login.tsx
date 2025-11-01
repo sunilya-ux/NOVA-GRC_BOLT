@@ -92,23 +92,23 @@ export function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-lg w-full space-y-8">
         <div>
           <div className="text-center">
-            <div className="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-blue-600">
-              <svg className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="mx-auto h-20 w-20 flex items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow-2xl">
+              <svg className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
-            <h2 className="mt-6 text-4xl font-extrabold text-gray-900">NOVA-GRC</h2>
-            <p className="mt-2 text-sm text-gray-600">AI-First Banking Compliance Platform</p>
+            <h1 className="mt-8 text-4xl font-extrabold text-gray-900">Welcome to NOVA-GRC</h1>
+            <p className="mt-3 text-lg text-gray-600">AI-First Banking Compliance Platform</p>
           </div>
         </div>
-        <div className="bg-white py-8 px-6 shadow-xl rounded-lg">
+        <div className="bg-white/80 backdrop-blur-sm py-10 px-8 shadow-2xl rounded-2xl border border-white/20">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email address
               </label>
               <div className="mt-1">
@@ -120,14 +120,15 @@ export function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 text-gray-900 bg-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                   placeholder="officer@bank.com"
+                  aria-describedby="email-description"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                 Password
               </label>
               <div className="mt-1">
@@ -139,16 +140,17 @@ export function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 text-gray-900 bg-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                  aria-describedby="password-description"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="rounded-md bg-red-50 p-4">
+              <div className="rounded-md bg-red-50 p-4" role="alert" id="error-message">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -163,7 +165,8 @@ export function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex justify-center py-3 px-6 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transform transition-all duration-200 hover:scale-105"
+                aria-describedby={error ? "error-message" : undefined}
               >
                 {isLoading ? 'Signing in...' : 'Sign in'}
               </button>
@@ -180,31 +183,32 @@ export function Login() {
               </div>
             </div>
 
-            <div className="mt-4 space-y-3">
-              <p className="text-xs font-medium text-gray-700">Click any role to auto-fill credentials (Password: demo123):</p>
-              <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="mt-6 space-y-4">
+              <p className="text-sm font-medium text-gray-700 text-center" id="demo-description">Click any role to auto-fill credentials (Password: demo123)</p>
+              <div className="grid grid-cols-2 gap-3 text-xs" role="group" aria-labelledby="demo-description">
                 {demoUsers.map((user) => (
                   <button
                     key={user.email}
                     type="button"
                     onClick={() => handleRoleClick(user.email)}
-                    className={`${user.bgClass} p-2 rounded text-left transition-colors cursor-pointer border-2 border-transparent hover:border-opacity-100`}
+                    className={`${user.bgClass} p-4 rounded-lg text-left transition-all duration-200 cursor-pointer border-2 border-transparent hover:border-opacity-100 hover:shadow-md transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+                    aria-label={`Login as ${user.role} with email ${user.email}`}
                   >
                     <strong className={user.textClass}>{user.role}</strong>
                     <p className={user.emailClass}>{user.email}</p>
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-gray-500 mt-2" aria-live="polite">
                 + 2 more users for testing team segregation (officer2@demo.com, manager2@demo.com)
               </p>
             </div>
           </div>
         </div>
 
-        <div className="text-center text-xs text-gray-500">
-          <p>Protected by Role-Based Access Control (RBAC)</p>
-          <p className="mt-1">Sprint 1 - Foundation Implementation</p>
+        <div className="text-center text-sm text-gray-500">
+          <p className="font-medium">Protected by Role-Based Access Control (RBAC)</p>
+          <p className="mt-2">Sprint 1 - Foundation Implementation</p>
         </div>
       </div>
     </div>

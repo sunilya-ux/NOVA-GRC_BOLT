@@ -71,11 +71,8 @@ export function DocumentUpload() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Upload Document</h1>
-          <p className="mt-2 text-gray-600">
-            Upload KYC documents for AI-powered processing and verification
-          </p>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">Upload Document</h1>
         </div>
 
         {error && (
@@ -154,12 +151,12 @@ export function DocumentUpload() {
                       <p className="mb-2 text-sm text-gray-600">
                         <span className="font-semibold">Click to upload</span> or drag and drop
                       </p>
-                      <p className="text-xs text-gray-500">PNG, JPG up to 5MB</p>
+                      <p className="text-xs text-gray-500">Supported formats: PNG, JPG up to 5MB</p>
                     </div>
                   )}
                   <input
                     type="file"
-                    className="hidden"
+                    className="sr-only"
                     accept="image/*"
                     onChange={handleFileSelect}
                     disabled={uploading}

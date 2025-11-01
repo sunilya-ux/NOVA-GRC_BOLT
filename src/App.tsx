@@ -10,6 +10,8 @@ import { DocumentSearch } from './pages/DocumentSearch'
 import { Analytics } from './pages/Analytics'
 import { BulkProcessing } from './pages/BulkProcessing'
 import { AuditLogs } from './pages/AuditLogs'
+import { AIExplainability } from './pages/AIExplainability'
+import { ComplianceDashboard } from './pages/ComplianceDashboard'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { RoleGuard } from './components/RoleGuard'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -66,21 +68,21 @@ function App() {
             }
           />
           <Route
-            path="/approvals"
-            element={
-              <ProtectedRoute>
-                <RoleGuard allowedRoles={['compliance_manager', 'cco']}>
-                  <ManagerApproval />
-                </RoleGuard>
-              </ProtectedRoute>
-            }
-          />
-          <Route
             path="/search"
             element={
               <ProtectedRoute>
                 <RoleGuard allowedRoles={['compliance_officer', 'compliance_manager', 'cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']}>
                   <DocumentSearch />
+                </RoleGuard>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/approvals"
+            element={
+              <ProtectedRoute>
+                <RoleGuard allowedRoles={['compliance_manager', 'cco']}>
+                  <ManagerApproval />
                 </RoleGuard>
               </ProtectedRoute>
             }
@@ -110,6 +112,26 @@ function App() {
             element={
               <ProtectedRoute>
                 <AuditLogs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ai-explainability"
+            element={
+              <ProtectedRoute>
+                <RoleGuard allowedRoles={['compliance_officer', 'compliance_manager', 'cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']}>
+                  <AIExplainability />
+                </RoleGuard>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/compliance-dashboard"
+            element={
+              <ProtectedRoute>
+                <RoleGuard allowedRoles={['cco', 'ciso', 'internal_auditor', 'dpo', 'external_auditor']}>
+                  <ComplianceDashboard />
+                </RoleGuard>
               </ProtectedRoute>
             }
           />

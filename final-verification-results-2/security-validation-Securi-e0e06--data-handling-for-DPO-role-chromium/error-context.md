@@ -1,0 +1,174 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - img [ref=e10]
+          - generic [ref=e12]:
+            - heading "NOVA-GRC" [level=1] [ref=e13]
+            - paragraph [ref=e14]: AI-First Banking Compliance
+        - navigation [ref=e15]:
+          - link "Main Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "Search" [ref=e17] [cursor=pointer]:
+            - /url: /search
+          - link "Analytics" [ref=e18] [cursor=pointer]:
+            - /url: /analytics
+          - link "My Activity" [ref=e19] [cursor=pointer]:
+            - /url: /audit-logs
+          - link "AI Explainability" [ref=e20] [cursor=pointer]:
+            - /url: /ai-explainability
+          - link "Compliance Dashboard" [ref=e21] [cursor=pointer]:
+            - /url: /compliance-dashboard
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - paragraph [ref=e24]: Meena Iyer
+          - paragraph [ref=e25]: dpo@demo.com
+        - generic [ref=e26]: DPO
+        - button "Sign Out" [ref=e27] [cursor=pointer]
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - heading "Compliance Dashboard" [level=1] [ref=e30]
+      - paragraph [ref=e31]: Monitor DPDP compliance, access control violations, and security posture
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - heading "Overall Compliance Score" [level=2] [ref=e36]
+            - paragraph [ref=e37]: "Last audit: 10/31/2025, 7:50:50 PM"
+          - generic [ref=e38]: 95%
+        - generic [ref=e40]:
+          - generic [ref=e41]: Compliance Level
+          - generic [ref=e42]: 95%
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Compliance Violations" [level=3] [ref=e48]
+            - paragraph [ref=e49]: 1 violations detected
+          - generic [ref=e53] [cursor=pointer]:
+            - generic [ref=e54]: 🔒
+            - generic [ref=e55]:
+              - generic [ref=e56]:
+                - paragraph [ref=e57]: DATA ACCESS_VIOLATION
+                - generic [ref=e58]: HIGH
+              - paragraph [ref=e59]: Consent management workflow not fully implemented
+              - paragraph [ref=e60]: 10/31/2025, 7:50:50 PM
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - heading "Access Control Matrix" [level=3] [ref=e63]
+            - paragraph [ref=e64]: Role-based permissions overview
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - heading "compliance officer" [level=4] [ref=e69]
+                - generic [ref=e70]:
+                  - generic [ref=e71]: OWN Scope
+                  - generic [ref=e72]: Audited
+              - generic [ref=e73]:
+                - paragraph [ref=e74]: • Cannot approve or reject documents
+                - paragraph [ref=e75]: • Cannot access bulk processing
+                - paragraph [ref=e76]: +2 more restrictions
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - heading "compliance manager" [level=4] [ref=e79]
+                - generic [ref=e80]:
+                  - generic [ref=e81]: TEAM Scope
+                  - generic [ref=e82]: Audited
+              - generic [ref=e83]:
+                - paragraph [ref=e84]: • Cannot view all documents (only team scope)
+                - paragraph [ref=e85]: • Cannot view all audit logs
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - heading "cco" [level=4] [ref=e88]
+                - generic [ref=e89]:
+                  - generic [ref=e90]: ALL Scope
+                  - generic [ref=e91]: Audited
+              - generic [ref=e92]:
+                - paragraph [ref=e93]: • Cannot upload documents directly
+                - paragraph [ref=e94]: • Cannot make final approval decisions (oversight only)
+            - generic [ref=e95]:
+              - generic [ref=e96]:
+                - heading "ciso" [level=4] [ref=e97]
+                - generic [ref=e98]:
+                  - generic [ref=e99]: ALL Scope
+                  - generic [ref=e100]: Audited
+              - generic [ref=e101]:
+                - paragraph [ref=e102]: • Read-only access to all documents
+                - paragraph [ref=e103]: • No operational permissions
+                - paragraph [ref=e104]: +1 more restrictions
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - heading "internal auditor" [level=4] [ref=e107]
+                - generic [ref=e108]:
+                  - generic [ref=e109]: ALL Scope
+                  - generic [ref=e110]: Audited
+              - generic [ref=e111]:
+                - paragraph [ref=e112]: • Read-only access to all data
+                - paragraph [ref=e113]: • No operational permissions
+                - paragraph [ref=e114]: +1 more restrictions
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - heading "dpo" [level=4] [ref=e117]
+                - generic [ref=e118]:
+                  - generic [ref=e119]: ALL Scope
+                  - generic [ref=e120]: Audited
+              - generic [ref=e121]:
+                - paragraph [ref=e122]: • Read-only access to all documents
+                - paragraph [ref=e123]: • No operational permissions
+                - paragraph [ref=e124]: +1 more restrictions
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - heading "external auditor" [level=4] [ref=e127]
+                - generic [ref=e128]:
+                  - generic [ref=e129]: ALL Scope
+                  - generic [ref=e130]: Audited
+              - generic [ref=e131]:
+                - paragraph [ref=e132]: • Read-only access to all data
+                - paragraph [ref=e133]: • No operational permissions
+                - paragraph [ref=e134]: +1 more restrictions
+            - generic [ref=e135]:
+              - generic [ref=e136]:
+                - heading "system admin" [level=4] [ref=e137]
+                - generic [ref=e138]:
+                  - generic [ref=e139]: OWN Scope
+                  - generic [ref=e140]: Audited
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: • No data access permissions
+                - paragraph [ref=e143]: • System administration only
+                - paragraph [ref=e144]: +1 more restrictions
+            - generic [ref=e145]:
+              - generic [ref=e146]:
+                - heading "ml engineer" [level=4] [ref=e147]
+                - generic [ref=e148]:
+                  - generic [ref=e149]: OWN Scope
+                  - generic [ref=e150]: Audited
+              - generic [ref=e151]:
+                - paragraph [ref=e152]: • No data access permissions
+                - paragraph [ref=e153]: • AI/ML system access only
+                - paragraph [ref=e154]: +1 more restrictions
+      - generic [ref=e155]:
+        - heading "Compliance Recommendations" [level=3] [ref=e156]
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e159]: 💡
+            - paragraph [ref=e160]: Conduct immediate security audit
+          - generic [ref=e161]:
+            - generic [ref=e162]: 💡
+            - paragraph [ref=e163]: Review and update access control policies
+          - generic [ref=e164]:
+            - generic [ref=e165]: 💡
+            - paragraph [ref=e166]: Implement additional monitoring controls
+          - generic [ref=e167]:
+            - generic [ref=e168]: 💡
+            - paragraph [ref=e169]: Provide additional training to staff
+      - generic [ref=e171]:
+        - img [ref=e173]
+        - generic [ref=e175]:
+          - paragraph [ref=e176]:
+            - strong [ref=e177]: "Next Audit Due:"
+            - text: 11/30/2025
+          - paragraph [ref=e178]: Regular compliance audits ensure ongoing adherence to DPDP and RBAC requirements.
+```
